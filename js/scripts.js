@@ -1,45 +1,62 @@
-//array of objects with a name, height, and type attribute
-pokemonList = [
-    {
-        name: 'Pikachu',
-        height: 0.4,
-        type: ['electric']
-    },
-    {
-        name: 'Mimikyu',
-        height: 0.2,
-        type: ['ghost', 'fairy']
-    },
-    {
-        name: 'Squirtle',
-        height: 0.5,
-        type: ['water']},
-    {
-        name: 'Jigglypuff',
-        height: 0.5,
-        type: ['normal', 'fairy']
-    },
-    {
-        name: 'Luxray',
-        height: 1.4,
-        type: ['electric']
-    },
-    {
-        name: 'Cyndaquil',
-        height: 0.5,
-        type: ['fire']
-    },
-    {
-        name: 'Mareep',
-        height: 0.6,
-        type: ['electric']
-    },
-    {
-        name: 'Beedrill',
-        height: 1.0,
-        type: ['bug', 'poison']
+let pokemonRepository = (function() {
+    //array of objects with a name, height, and type attribute
+    let pokemonList = [
+        {
+            name: 'Pikachu',
+            height: 0.4,
+            type: ['electric']
+        },
+        {
+            name: 'Mimikyu',
+            height: 0.2,
+            type: ['ghost', 'fairy']
+        },
+        {
+            name: 'Squirtle',
+            height: 0.5,
+            type: ['water']},
+        {
+            name: 'Jigglypuff',
+            height: 0.5,
+            type: ['normal', 'fairy']
+        },
+        {
+            name: 'Luxray',
+            height: 1.4,
+            type: ['electric']
+        },
+        {
+            name: 'Cyndaquil',
+            height: 0.5,
+            type: ['fire']
+        },
+        {
+            name: 'Mareep',
+            height: 0.6,
+            type: ['electric']
+        },
+        {
+            name: 'Beedrill',
+            height: 1.0,
+            type: ['bug', 'poison']
+        }
+    ];
+
+    function add(pokemon) {
+        pokemonList.push(pokemon);
     }
-];
+
+    function getAll() {
+        return pokemonList;
+    }
+
+    return {
+        add: add,
+        getAll: getAll
+    };
+})();
+
+
 
 //Loop will iterate over pokemonList and print name and height in DOM
 /*for (let i = 0; i < pokemonList.length; i++) {
@@ -51,7 +68,7 @@ pokemonList = [
 }*/
 
 //New forEach() loop added for Exercise 1.5 to replace for loop above
-pokemonList.forEach(function(pokemon) {
+(pokemonRepository.getAll()).forEach(function(pokemon) {
     if (pokemon.height < 1.1) {
         document.write(pokemon.name + ' (Height: ' + pokemon.height + 'm)<br><br>');
     } else {
