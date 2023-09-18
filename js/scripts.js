@@ -42,10 +42,19 @@ pokemonList = [
 ];
 
 //Loop will iterate over pokemonList and print name and height in DOM
-for (let i = 0; i < pokemonList.length; i++) {
+/*for (let i = 0; i < pokemonList.length; i++) {
     if (pokemonList[i].height < 1.1) {
         document.write(pokemonList[i].name + ' (Height: ' + pokemonList[i].height + 'm)<br><br>'); //I tried using \n at first, had to look up the <br> method.
     } else { //adds a comment to the end of the line if height is greater than 1m
         document.write(pokemonList[i].name + ' (Height: ' + pokemonList[i].height + 'm) - Wow, that\'s big!<br><br>');
     }
-}
+}*/
+
+//New forEach() loop added for Exercise 1.5 to replace for loop above
+pokemonList.forEach(function(pokemon) {
+    if (pokemon.height < 1.1) {
+        document.write(pokemon.name + ' (Height: ' + pokemon.height + 'm)<br><br>');
+    } else {
+        document.write(pokemon.name + ' (Height: ' + pokemon.height + 'm) - Wow, that\'s big!<br><br>');
+    }
+});
