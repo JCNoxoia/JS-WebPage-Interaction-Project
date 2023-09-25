@@ -42,6 +42,7 @@ let pokemonRepository = (function() {
         }
     ];
 
+// subfunctions for addListItems
     function add(pokemon) {
         pokemonList.push(pokemon);
     }
@@ -50,28 +51,40 @@ let pokemonRepository = (function() {
         return pokemonList;
     }
 
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+
+    function logDetails(button, pokemon) {
+        button.addEventListener('click', function(event) {
+            showDetails(pokemon);
+        })
+    }
+
+// loop to add pokemon buttons to DOM and log them in console
+    function addListItem(pokemon) {
+        let pmListBlock = document.querySelector('.pokemon-list');
+        let pmListBlockItem = document.createElement('li');
+    
+        let pokeButton = document.createElement('button');
+        pokeButton.innerText = pokemon.name;
+        pokeButton.classList.add('poke-button');
+    
+        pmListBlockItem.appendChild(pokeButton);
+        pmListBlock.appendChild(pmListBlockItem);
+
+        logDetails(pokeButton, pokemon);
+    }
+
     return {
         add: add,
-        getAll: getAll
+        getAll: getAll,
+        addListItem: addListItem,
+        showDetails: showDetails
     };
 })();
 
-
-
-//Loop will iterate over pokemonList and print name and height in DOM
-/*for (let i = 0; i < pokemonList.length; i++) {
-    if (pokemonList[i].height < 1.1) {
-        document.write(pokemonList[i].name + ' (Height: ' + pokemonList[i].height + 'm)<br><br>'); //I tried using \n at first, had to look up the <br> method.
-    } else { //adds a comment to the end of the line if height is greater than 1m
-        document.write(pokemonList[i].name + ' (Height: ' + pokemonList[i].height + 'm) - Wow, that\'s big!<br><br>');
-    }
-}*/
-
 //New forEach() loop added for Exercise 1.5 to replace for loop above
-(pokemonRepository.getAll()).forEach(function(pokemon) {
-    if (pokemon.height < 1.1) {
-        document.write(pokemon.name + ' (Height: ' + pokemon.height + 'm)<br><br>');
-    } else {
-        document.write(pokemon.name + ' (Height: ' + pokemon.height + 'm) - Wow, that\'s big!<br><br>');
-    }
+pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.addListItem(pokemon);
 });

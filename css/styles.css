@@ -1,0 +1,16 @@
+li {
+    list-style-type: '>>> ';
+    font-weight: bold;
+}
+
+.pokemon-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.poke-button {
+    color: white;
+    background-color: rgb(4, 167, 207);
+    text-align: center;
+    width: 100px;
+};
