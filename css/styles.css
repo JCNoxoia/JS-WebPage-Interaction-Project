@@ -6,6 +6,7 @@ li {
 .pokemon-list {
     display: flex;
     flex-direction: column;
+    justify-content: right;
 }
 
 .poke-button {
@@ -13,4 +14,10 @@ li {
     background-color: rgb(4, 167, 207);
     text-align: center;
     width: 100px;
+
+
 };
+
+.poke-button:hover {
+    background-color: grey;
+}

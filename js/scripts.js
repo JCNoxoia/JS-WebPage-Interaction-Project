@@ -1,48 +1,10 @@
 let pokemonRepository = (function() {
     //array of objects with a name, height, and type attribute
-    let pokemonList = [
-        {
-            name: 'Pikachu',
-            height: 0.4,
-            type: ['electric']
-        },
-        {
-            name: 'Mimikyu',
-            height: 0.2,
-            type: ['ghost', 'fairy']
-        },
-        {
-            name: 'Squirtle',
-            height: 0.5,
-            type: ['water']},
-        {
-            name: 'Jigglypuff',
-            height: 0.5,
-            type: ['normal', 'fairy']
-        },
-        {
-            name: 'Luxray',
-            height: 1.4,
-            type: ['electric']
-        },
-        {
-            name: 'Cyndaquil',
-            height: 0.5,
-            type: ['fire']
-        },
-        {
-            name: 'Mareep',
-            height: 0.6,
-            type: ['electric']
-        },
-        {
-            name: 'Beedrill',
-            height: 1.0,
-            type: ['bug', 'poison']
-        }
-    ];
+    let pokemonList = [];
 
-// subfunctions for addListItems
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+
+// methods for addListItems
     function add(pokemon) {
         pokemonList.push(pokemon);
     }
@@ -52,7 +14,9 @@ let pokemonRepository = (function() {
     }
 
     function showDetails(pokemon) {
+      loadDetails(pokemon).then(function () {
         console.log(pokemon);
+      });
     }
 
     function logDetails(button, pokemon) {
@@ -60,6 +24,8 @@ let pokemonRepository = (function() {
             showDetails(pokemon);
         })
     }
+
+    
 
 // loop to add pokemon buttons to DOM and log them in console
     function addListItem(pokemon) {
@@ -76,15 +42,63 @@ let pokemonRepository = (function() {
         logDetails(pokeButton, pokemon);
     }
 
+    function loadList() {
+      return fetch(apiUrl).then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        json.results.forEach(function (item) {
+          let pokemon = {
+            name: item.name,
+            detailsUrl: item.url
+          };
+          add(pokemon);
+        });
+      }).catch(function (e) {
+        console.error(e);
+      })
+    }
+
+    function loadDetails(item) {
+      let url = item.detailsUrl;
+      return fetch(url).then(function (response) {
+        return response.json();
+      }).then(function (details) {
+        // Now we add the details to the item
+        item.imageUrl = details.sprites.front_default;
+        item.height = details.height;
+        item.types = details.types;
+      }).catch(function (e) {
+        console.error(e);
+      });
+    }
+
     return {
         add: add,
         getAll: getAll,
+        loadList: loadList,
+        loadDetails: loadDetails,
         addListItem: addListItem,
         showDetails: showDetails
-    };
+    }
+
 })();
+
+pokemonRepository.loadList().then(function() {
+    // Now the data is loaded!
+    pokemonRepository.getAll().forEach(function(pokemon){
+      pokemonRepository.addListItem(pokemon);
+    });
+  });
 
 //New forEach() loop added for Exercise 1.5 to replace for loop above
 pokemonRepository.getAll().forEach(function(pokemon) {
   pokemonRepository.addListItem(pokemon);
+});
+
+fetch('https://pokeapi.co/api/v2/pokemon/?limit=150').then(function (response) {
+  return response.json();
+}).then(function (pokemonList) {
+  console.log(pokemonList);
+}).catch(function () {
+  console.error('An error has occured.')
 });
