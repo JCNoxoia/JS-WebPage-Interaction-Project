@@ -1,23 +1,60 @@
-li {
-    list-style-type: '>>> ';
-    font-weight: bold;
+body {
+    display: flex;
+    background-color: rgb(242, 243, 170);
+}
+
+#list-container {
+    display: flex;
+    flex: 1;
+    width: 500px;
+    justify-content: center;
+    background-color: rgb(226, 226, 226);
+    border: 5px solid black;
 }
 
 .pokemon-list {
     display: flex;
     flex-direction: column;
-    justify-content: right;
+    justify-content: space-between;
+    padding-left: 0;
+}
+
+.poke-list-item {
+    list-style-type: none;
+    font-weight: bold;
+    padding: 5px;
 }
 
 .poke-button {
     color: white;
     background-color: rgb(4, 167, 207);
+    border: 3px solid black;
     text-align: center;
-    width: 100px;
-
-
-};
+    text-transform: uppercase;
+    font-size: larger;
+    width: 400px;
+    height: 60px;
+}
 
 .poke-button:hover {
-    background-color: grey;
+    background: grey;
+}
+
+.poke-button:active {
+    background-color: rgb(143, 204, 50);
+}
+
+#screen-container {
+    flex: 2.5;
+}
+
+#pokedex-screen {
+    /* display: none; */
+    text-align: center;
+    margin: 100px;
+    height: 675px;
+    width: 1200px;
+    background-color: rgb(226, 226, 226);
+    border: 5px solid black;
+    position: fixed;
 }
