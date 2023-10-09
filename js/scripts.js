@@ -25,7 +25,11 @@ let pokemonRepository = (function() {
         })
     }
 
-    
+//Function called to show modal on pokemon button press    
+    function showPokeModal() {
+      let modal = document.querySelector('#poke-banner');
+      modal.classList.add('is-visible');
+    }
 
 // loop to add pokemon buttons to DOM and log them in console
     function addListItem(pokemon) {
@@ -41,6 +45,11 @@ let pokemonRepository = (function() {
         pmListBlock.appendChild(pmListBlockItem);
 
         logDetails(pokeButton, pokemon);
+
+        //Event listener for modal
+        pokeButton.addEventListener('click', function() {
+          showPokeModal();
+        })
     }
 
     function loadList() {
@@ -103,3 +112,4 @@ fetch('https://pokeapi.co/api/v2/pokemon/?limit=150').then(function (response) {
 }).catch(function () {
   console.error('An error has occured.')
 });
+
