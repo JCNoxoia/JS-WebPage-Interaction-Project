@@ -85,7 +85,7 @@ body {
     align-items: center;
 }
 
-#sprite-box {
+.sprite-box {
     background-color: whitesmoke;
     margin: 30px;
     border: 5px solid black;
