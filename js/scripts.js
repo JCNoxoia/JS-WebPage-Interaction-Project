@@ -32,12 +32,12 @@ let pokemonRepository = (function() {
       modalContainer.classList.remove('is-visible');
     }
 
-    // window.addEventListener('keydown', (e) => {
-    //   let modalContainer = document.querySelector('#poke-banner');
-    //   if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-    //     hidePokeModal();  
-    //   }
-    // });
+    window.addEventListener('keydown', (e) => {
+      let modalContainer = document.querySelector('#poke-banner');
+      if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+        hidePokeModal();  
+      }
+    });
 
 //Function called to show modal on pokemon button press    
     function showPokeModal(spriteUrl, name, height, types) {
