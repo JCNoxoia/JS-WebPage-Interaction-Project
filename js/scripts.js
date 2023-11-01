@@ -1,5 +1,4 @@
 let pokemonRepository = (function() {
-    //array of objects with a name, height, and type attribute
     let pokemonList = [];
 
     let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
@@ -95,13 +94,16 @@ let pokemonRepository = (function() {
 
 // loop to add pokemon buttons to DOM and log them in console
     function addListItem(pokemon) {
-        let pmListBlock = document.querySelector('.pokemon-list');
+        let pmListBlock = document.querySelector('.list-group');
         let pmListBlockItem = document.createElement('li');
-        pmListBlockItem.classList.add('poke-list-item');
+        pmListBlockItem.classList.add('list-group-item');
+        // pmListBlockItem.classList.add('poke')
     
         let pokeButton = document.createElement('button');
         pokeButton.innerText = pokemon.name;
-        pokeButton.classList.add('poke-button');
+        pokeButton.classList.add('btn');
+        pokeButton.classList.add('btn-primary');
+        pokeButton.classList.add('btn-block');
     
         pmListBlockItem.appendChild(pokeButton);
         pmListBlock.appendChild(pmListBlockItem);
