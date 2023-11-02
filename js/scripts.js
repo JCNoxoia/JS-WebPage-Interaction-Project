@@ -38,58 +38,27 @@ let pokemonRepository = (function() {
       }
     });
 
-//Function called to show modal on pokemon button press    
+// Function called to show modal on pokemon button press    
     function showPokeModal(spriteUrl, name, height, types) {
-      let modalContainer = document.querySelector('#poke-banner');
-      modalContainer.innerHTML = '';
+    let modalBody = $('.modal-body');
+    let modalTitle = $('.modal-title');
+    let modalHeader = $('.modal-header');
 
-      let modalImage = document.createElement('div');
-      modalImage.classList.add('poke-banner__image-container');
+    modalTitle.empty();
+    modalBody.empty()
 
-      let spriteBox = document.createElement('div');
-      spriteBox.classList.add('sprite-box');
+    let pokemonName = $('<h1>' + name + '</h1>');
+    let pokemonSprite = $('<img class="modal-img" style="width:50%">');
+    pokemonSprite.attr("src", spriteUrl)
 
-      let pokeSprite = document.createElement('img');
-      pokeSprite.src = spriteUrl;
-      pokeSprite.width = 300;
-      pokeSprite.height = 300;
-      
-      let modalText = document.createElement('div');
-      modalText.classList.add('poke-banner__text-container');
-
-      let pokeDescription = document.createElement('p');
-      pokeDescription.innerText = name + height + types;
-
-      let closeButton = document.createElement('button');
-      closeButton.classList.add('modal-close');
-      closeButton.innerText = 'Close';
-      closeButton.addEventListener('click', hidePokeModal);
-
-      modalImage.appendChild(spriteBox);
-      spriteBox.appendChild(pokeSprite);
-      modalText.appendChild(pokeDescription);
-      modalContainer.appendChild(modalImage);
-      modalContainer.appendChild(modalText);
-      modalContainer.appendChild(closeButton);
-
-      modalContainer.classList.add('is-visible');
-
-      screenContainer = document.querySelector('#screen-container');
-      screenContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === screenContainer) {
-          hidePokeModal();
-        };
-      });
-
-      welcomeBanner = document.querySelector('#welcome-banner');
-      welcomeBanner.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === welcomeBanner) {
-          hidePokeModal();
-        };
-      });
-    }
+    let pokemonHeight = $('<p>' + 'Height : ' + height + '</p>');
+    
+    // let pokemonTypes = $('<p>' + 'Types : ' + types[0].type.name + '</p>')
+    modalTitle.append(pokemonName);
+    modalBody.append(pokemonSprite);
+    modalBody.append(pokemonHeight);
+    // modalBody.append(pokemonTypes);
+    };
 
 
 // loop to add pokemon buttons to DOM and log them in console
@@ -104,6 +73,10 @@ let pokemonRepository = (function() {
         pokeButton.classList.add('btn');
         pokeButton.classList.add('btn-primary');
         pokeButton.classList.add('btn-block');
+        pokeButton.setAttribute('type', 'button');
+        pokeButton.setAttribute('data-toggle', 'modal');
+        pokeButton.setAttribute('data-target', '.modal');
+        
     
         pmListBlockItem.appendChild(pokeButton);
         pmListBlock.appendChild(pmListBlockItem);

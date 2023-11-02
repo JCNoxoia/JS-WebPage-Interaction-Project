@@ -20,3 +20,9 @@ body {
 .active {
     background-color: rgb(2, 199, 2);
 }
+
+#welcome-banner {
+    text-align: center;
+    background-color: rgb(233, 233, 233);
+    border: 3px solid black;
+}
